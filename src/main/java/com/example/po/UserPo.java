@@ -1,4 +1,4 @@
-package com.example.repositories;
+package com.example.po;
 
 import java.io.Serializable;
 import java.sql.Date;

@@ -1,5 +1,6 @@
 package com.example.repositories;
 
+import com.example.po.UserPo;
 import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;

@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.example.repositories.UserPo;
+import com.example.po.UserPo;
 import com.example.repositories.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
