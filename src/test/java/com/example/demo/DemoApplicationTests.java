@@ -23,4 +23,19 @@ public class DemoApplicationTests {
         System.out.println(list.size());
     }
 
+
+/*    @Resource(name = "oneJdbcTemplate")
+    protected JdbcTemplate jdbcTemplate1;
+    @Resource(name = "twoJdbcTemplate")
+    protected JdbcTemplate jdbcTemplate2;
+
+    @Test
+    public void test() throws Exception {
+        List<UserPo> list = jdbcTemplate1.query("select * from HL_USER", new UserRowMapper());
+        System.out.println(list.size());
+
+
+        List<CFGENTPO> cfgentpos = jdbcTemplate2.query("select * from cfg_ent", new Object[]{}, new BeanPropertyRowMapper<CFGENTPO>(CFGENTPO.class));
+        System.out.println(cfgentpos.size());
+    }*/
 }
