@@ -13,6 +13,14 @@ import java.util.List;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 public class DemoApplicationTests {
+/*    @Autowired
+    private EntRepository entRepository;
+    @Test
+    public void contextLoads() {
+        entRepository.save(new CFGENTPO("成立"));
+        List<CFGENTPO> all = entRepository.findAll();
+        System.out.println(all.size());
+    }*/
 
     @Autowired
     private UserRepository userRepository;

@@ -14,6 +14,14 @@ import java.io.Serializable;
 
 @Entity
 public class CFGENTPO implements Serializable {
+
+    public CFGENTPO() {
+    }
+
+    public CFGENTPO(String entName) {
+        this.entName = entName;
+    }
+
     @Id
     @GeneratedValue
     private Integer id;

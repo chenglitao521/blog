@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration  scan="true" scanPeriod="60 seconds" debug="false">
+
+    <contextName>logback</contextName>
+    <property name="log.path" value="D:/IdeaProjects/log" /><!--日志路径-->
+
+    <!--输出到控制台-->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <!-- <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+             <level>ERROR</level>
+         </filter>-->
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!--输出到文件-->
+    <appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!-- 过滤器，只打印ERROR级别的日志 -->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/logback.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+            <totalSizeCap>1GB</totalSizeCap>
+        </rollingPolicy>
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} %contextName [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+         <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+             <level>ERROR</level>
+        </filter>
+    </appender>
+
+
+    <logger name="com.example.repositories" level="DEBUG" additivity="false">
+        <appender-ref ref="console" />
+    </logger>
+
+    <!-- 开发环境下的日志配置 -->
+    <springProfile name="dev">
+        <root level="INFO">
+            <appender-ref ref="console" />
+            <appender-ref ref="file" />
+        </root>
+    </springProfile>
+
+    <!-- 生产环境下的日志配置 -->
+    <springProfile name="prod">
+        <root level="INFO">
+            <appender-ref ref="file" />
+        </root>
+    </springProfile>
+</configuration>
