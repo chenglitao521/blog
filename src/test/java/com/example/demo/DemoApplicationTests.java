@@ -2,10 +2,12 @@ package com.example.demo;
 
 import com.example.po.UserPo;
 import com.example.repositories.UserRepository;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.util.List;
@@ -24,13 +26,21 @@ public class DemoApplicationTests {
 
     @Autowired
     private UserRepository userRepository;
-
+    @Autowired
+    private RedisTemplate redisTemplate;
     @Test
     public void contextLoads() {
         List<UserPo> list =   userRepository.findAll();
         System.out.println(list.size());
     }
 
+
+    @Test
+    //直接使用redisTemplate存取字符串
+    public void setAndGet() {
+        redisTemplate.opsForValue().set("test:set", "testValue1");
+        Assert.assertEquals("testValue1", redisTemplate.opsForValue().get("test:set"));
+    }
 
 /*    @Resource(name = "oneJdbcTemplate")
     protected JdbcTemplate jdbcTemplate1;
