@@ -1,14 +1,13 @@
 package com.example.task;
 
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 
 /**
  * @Author:chenglitao
  * @Description:
  * @Date:2018/5/18 16:15
  */
-@Component
+/*@Component*/
 public class ScheduleTask {
     private int count=0;
 
