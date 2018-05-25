@@ -3,6 +3,7 @@ package com.example.service.impl;
 import com.example.po.UserInfo;
 import com.example.repositories.UserInfoDao;
 import com.example.service.IUserInfoService;
+import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 
@@ -11,6 +12,7 @@ import javax.annotation.Resource;
  * @Description:
  * @Date:2018/5/24 18:25
  */
+@Service
 public class UserInfoServiceImpl implements IUserInfoService {
 
     @Resource
