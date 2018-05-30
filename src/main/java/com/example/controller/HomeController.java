@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.Map;
 
 /**
@@ -30,6 +31,7 @@ public class HomeController {
         Subject currentUser = SecurityUtils.getSubject();
         if(currentUser.isAuthenticated()){
             msg = "该账号已经邓肯";
+            return "index";
         }
         // 登录失败从request中获取shiro处理的异常信息。
         // shiroLoginFailure:就是shiro异常类的全类名.
@@ -50,8 +52,6 @@ public class HomeController {
                 msg = "else >> "+exception;
                 System.out.println("else -- >" + exception);
             }
-        }else{
-            return "/index";
         }
         map.put("msg", msg);
         // 此方法不处理登录成功,由shiro进行处理
@@ -62,5 +62,12 @@ public class HomeController {
     public String unauthorizedRole(){
         System.out.println("------没有权限-------");
         return "403";
+    }
+    @RequestMapping("/logout")
+    public String logout(HttpSession session) {
+        Subject subject = SecurityUtils.getSubject();
+        subject.logout();
+//        session.removeAttribute("user");
+        return "login";
     }
 }
